@@ -20,7 +20,9 @@ echo "The value of the variable b is $b"
 # Same in case deleting dir or file which is not present will delect the entire parent dir 
 # rm -rf /data/prod/${APPDATA}---> incase APPDATA is not present then entire prod dir will be deleted.
 
+echo  "The value of undeclared variable ${DATA}"
+
 
 # Print the value in different colors 
 
-echo -e " Printing the values in color \e[31m ${b} \e[0m"
+echo -e "Printing the values in color \e[31m ${b} \e[0m"
