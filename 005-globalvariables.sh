@@ -14,4 +14,4 @@ Date="$(date +%F)"
 tab= "$(who|wc -l)"
 
 echo "Todays date using dynamic date is : ${Date}"
-echo "No of opened sessions by dynamic computing is : ${tab}"
+echo -e "No of opened sessions by dynamic computing is : ${tab}"
