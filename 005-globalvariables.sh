@@ -11,7 +11,7 @@ echo "No of sessions opened is ${No_of_sessions}"
 #How to display time date and no of sessions opended without hardcoding the value 
 
 Date="$(date +%F)"
-tab= "$(who | wc -l)"
+tab="$(who | wc -l)"
 
 echo -e "Todays date using dynamic date is : ${Date}"
 echo -e "No of opened sessions by dynamic computing is : ${tab}"
