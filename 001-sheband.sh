@@ -6,4 +6,5 @@
 
 echo Welcome To Bash Scripting.
 
+#Whenever need to display special characters or print something use DOUBLE QUOTES.........
 echo "Hello World"
