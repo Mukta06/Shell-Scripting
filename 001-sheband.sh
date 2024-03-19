@@ -8,3 +8,5 @@ echo Welcome To Bash Scripting.
 
 #Whenever need to display special characters or print something use DOUBLE QUOTES.........
 echo "Hello World"
+
+echo "alias is used to give shortcut for particular command which we run frequently"
