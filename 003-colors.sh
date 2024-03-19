@@ -9,6 +9,6 @@ echo -e "\e[31m I am printing RED COLOR \e[0m"
 
 # echo -e "\e[BG color code;text colorcode m I am printing background and foreground color \e[0m"
 
-echo -e "\e[43;31m I am printing both background and foreground color [0m"
+echo -e "\e[43;31m I am printing both background and foreground color\e [0m"
 
 echo "color is applied to all"
