@@ -12,4 +12,6 @@ b=def
 #Printing the value of the variable
 
 echo $a
+# echo $a OR echo ${a}--> both are same if in some versions of bash 
+
 echo "The value of the variable b is $b"
