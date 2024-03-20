@@ -7,4 +7,4 @@ a=3000
 
 echo "The value of a is : $a"
 
-echo "The value of special variable 0 is : $0"
+echo "The value of special variable 0 is SCRIPT NAME: $0"
