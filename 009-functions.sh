@@ -18,7 +18,7 @@ start()
 {
     f
     echo "Number of opened sessions : $(who|wc -l)"
-    echo "Today's date is : $(date + %F)"
+    echo "Today's date is : $(date +%F)"
     echo "Load average in last 1 min is : $( uptime | awk -F : '{print $NF}' | awk -F ',' '{print $1}')"
 }
 
