@@ -18,6 +18,12 @@ echo -e "Project name is : \e[33m $Project \e[0m"
 
 # $0 ---> Prints script name 
 # $#----> Prints no of arguments used in the script ex: in this script 2
+# $?----> exit code --if it is zero then previous command is successful
 
 echo  -e "Number of arguments used in the Script $0 is : $#"
+
+echo $0
+echo $#
+echo $?
+
 
