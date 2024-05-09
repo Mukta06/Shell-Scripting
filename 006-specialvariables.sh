@@ -13,7 +13,7 @@ echo "The value of special variable 0 is SCRIPT NAME: $0"
 
 # 0-9 are the no of arguments we can use to give command line arg 
 
-echo -e "Team name is : \e[33m $Team \e[0m"
+echo -e "Team name is : \e[33m ${Team} \e[0m"
 echo -e "Project name is : \e[33m $Project \e[0m"
 
 # $0 ---> Prints script name 
