@@ -53,5 +53,5 @@ echo -n "Restart Nginx server :"
 systemctl restart nginx     &>>  $LOGFILE
 status $?
 
-echo -e "\e[32m ********__________$COMPONENT Component Configuration Is Completed ********__________ \e[0m"
+echo -e "\n \e[32m ********__________$COMPONENT Component Configuration Is Completed ********__________ \e[0m"
 
