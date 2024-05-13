@@ -2,4 +2,4 @@
 
 echo "Running $0 Script"
 
-bash components/$1
+bash components/$1.sh
