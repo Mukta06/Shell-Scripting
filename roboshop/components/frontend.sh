@@ -21,11 +21,11 @@ echo -n "Installing Nginx web server :"
 dnf install nginx -y      &>>  $LOGFILE
 status $?
 
-echo  -n "Enabling the Nginx server :"
+echo  -n "Enable Nginx server :"
 systemctl enable nginx    &>>  $LOGFILE
 status $?
 
-echo -n "starting the Nginx server :"
+echo -n "start Nginx server :"
 systemctl start nginx     &>>  $LOGFILE
 status $?
 
@@ -47,5 +47,9 @@ mv $COMPONENT-main/* .
 mv static/* .
 rm -rf ${COMPONENT}-main README.md
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
+status $?
+
+echo -n "Restart Nginx server :"
+systemctl restart nginx     &>>  $LOGFILE
 status $?
 
