@@ -39,7 +39,7 @@ rm -rf *  &>>  $LOGFILE
 status $?
 
 echo -n "Extracting  $COMPONENT component : "
-unzip /tmp/frontend.zip
+unzip /tmp/frontend.zip   &>>  $LOGFILE
 status $?
 #mv frontend-main/* .
 #mv static/* .
