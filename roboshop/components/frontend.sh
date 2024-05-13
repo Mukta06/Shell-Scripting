@@ -1,10 +1,9 @@
 #!bin/bash
 
 # Check whether the user have root access,, if not exit the script
-
 ID=$(id -u)
-LOGFILE="/tmp/frontend.log"
-
+COMPONENT="frontend"
+LOGFILE="/tmp/$COMPONENT"
 
 if [ $ID -ne 0 ]; then
     echo -e "\e[31m This script is expected to run with sudo \e[0m \n\e[33m EX : sudo bash Scriptname\e[0m"
@@ -16,7 +15,6 @@ status(){
     else
         echo -e "\e[31m FAILURE \e[0m"
     fi
-
 }
 
 echo -n "Installing Nginx web server :" 
@@ -30,3 +28,21 @@ status $?
 echo -n "starting the Nginx server :"
 systemctl start nginx     &>>  $LOGFILE
 status $?
+
+echo -n "Downloading the $COMPONENT Components : "
+curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip"
+status $?
+
+echo -n "Performing cleanup : "
+cd /usr/share/nginx/html
+rm -rf *  &>>  $LOGFILE
+status $?
+
+echo -n "Extracting  $COMPONENT component : "
+unzip /tmp/frontend.zip
+status $?
+#mv frontend-main/* .
+#mv static/* .
+#rm -rf frontend-main README.md
+#mv localhost.conf /etc/nginx/default.d/roboshop.conf
+
