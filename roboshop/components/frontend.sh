@@ -15,7 +15,7 @@ fi
 LOGFILE = "/tmp/frontend.log"
 
 echo -n "Installing Nginx web server :" 
-dnf install nginx -y      &>>  $LOGFILE
+dnf install nginx -y      &>>  /tmp/frontend.log
 if [ $? -eq 0 ]; then
     echo -e "\e[32m SUCCESS \e[0m"
 else
@@ -23,7 +23,7 @@ else
 fi
 
 echo  -n "Enabling the Nginx server :"
-systemctl enable nginx    &>>  $LOGFILE
+systemctl enable nginx    &>>  /tmp/frontend.log
 if [ $? -eq 0 ]; then
     echo -e "\e[32m SUCCESS \e[0m"
 else
@@ -31,7 +31,7 @@ else
 fi
 
 echo -n "starting the Nginx server :"
-systemctl start nginx     &>>  $LOGFILE
+systemctl start nginx     &>>  /tmp/frontend.log
 if [ $? -eq 0 ]; then
     echo -e "\e[32m SUCCESS \e[0m"
 else
