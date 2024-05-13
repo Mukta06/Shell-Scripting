@@ -1,7 +1,5 @@
 #!bin/bash
 
-echo  -e "\e[32m I am cart frontend \e[0m"
-
 # Check whether the user have root access,, if not exit the script
 
 ID=$(id -u)
