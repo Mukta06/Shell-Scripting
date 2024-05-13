@@ -5,6 +5,7 @@ echo  -e "\e[32m I am cart frontend \e[0m"
 # Check whether the user have root access,, if not exit the script
 
 ID=$(id -u)
+LOGFILE="/tmp/frontend.log"
 
 
 if [ $ID -ne 0 ]; then
@@ -13,7 +14,7 @@ if [ $ID -ne 0 ]; then
 fi
 
 echo -n "Installing Nginx web server :" 
-dnf install nginx -y      &>>  /tmp/frontend.log
+dnf install nginx -y      &>>  $LOGFILE
 if [ $? -eq 0 ]; then
     echo -e "\e[32m SUCCESS \e[0m"
 else
@@ -21,7 +22,7 @@ else
 fi
 
 echo  -n "Enabling the Nginx server :"
-systemctl enable nginx    &>>  /tmp/frontend.log
+systemctl enable nginx    &>>  $LOGFILE
 if [ $? -eq 0 ]; then
     echo -e "\e[32m SUCCESS \e[0m"
 else
@@ -29,7 +30,7 @@ else
 fi
 
 echo -n "starting the Nginx server :"
-systemctl start nginx     &>>  /tmp/frontend.log
+systemctl start nginx     &>>  $LOGFILE
 if [ $? -eq 0 ]; then
     echo -e "\e[32m SUCCESS \e[0m"
 else
