@@ -38,11 +38,14 @@ cd /usr/share/nginx/html
 rm -rf *  &>>  $LOGFILE
 status $?
 
-echo -n "Extracting  $COMPONENT component : "
+echo -n "Extracting  $COMPONENT : "
 unzip /tmp/frontend.zip   &>>  $LOGFILE
 status $?
-#mv frontend-main/* .
-#mv static/* .
-#rm -rf frontend-main README.md
-#mv localhost.conf /etc/nginx/default.d/roboshop.conf
+
+echo -n "Configuring $COMPONENT : "
+mv $COMPONENT-main/* .
+mv static/* .
+rm -rf ${COMPONENT}-main README.md
+mv localhost.conf /etc/nginx/default.d/roboshop.conf
+status $?
 
