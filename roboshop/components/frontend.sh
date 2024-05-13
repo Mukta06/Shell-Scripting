@@ -1,6 +1,6 @@
 #!bin/bash
 
-echo -e "\n\e[32m ********__________$COMPONENT Component Configuration Is Started ********__________ \e[0m"
+echo -e "\n\e[35m ********__________$COMPONENT Component Configuration Is Started ********__________ \e[0m"
 
 # Check whether the user have root access,, if not exit the script
 ID=$(id -u)
@@ -55,5 +55,5 @@ echo -n "Restart Nginx server :"
 systemctl restart nginx     &>>  $LOGFILE
 status $?
 
-echo -e "\n \e[32m ********__________$COMPONENT Component Configuration Is Completed ********__________ \e[0m"
+echo -e "\n \e[35m ********__________$COMPONENT Component Configuration Is Completed ********__________ \e[0m"
 
