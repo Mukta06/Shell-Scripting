@@ -6,7 +6,7 @@ echo  -e "\e[32m I am cart frontend \e[0m"
 
 ID=$(id -u)
 if [ $ID -ne 0 ]; then
-    echo -e "\e[31m This script is expected to run with sudo \e[0m"
+    echo -e "\e[31m This script is expected to run with sudo \e[0m" \n "EX : sudo bash Scriptname"
     exit 1
 fi
 
