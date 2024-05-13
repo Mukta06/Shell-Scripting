@@ -13,8 +13,24 @@ fi
 
 echo "Installing Nginx web server" 
 dnf install nginx -y      &>>  /tmp/frontend.log
+if [$? -eq 0]; then
+    echo -e "\e[32m SUCCESS \e[0m"
+else
+    echo -e"\e[31m FAILURE \e[0m"
+fi
 
 echo "Enabling the Nginx server"
 systemctl enable nginx    &>>  /tmp/frontend.log
+if [$? -eq 0]; then
+    echo -e "\e[32m SUCCESS \e[0m"
+else
+    echo -e"\e[31m FAILURE \e[0m"
+fi
+
 echo "starting the Nginx server"
 systemctl start nginx     &>>  /tmp/frontend.log
+if [$? -eq 0]; then
+    echo -e "\e[32m SUCCESS \e[0m"
+else
+    echo -e"\e[31m FAILURE \e[0m"
+fi
