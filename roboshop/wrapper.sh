@@ -2,5 +2,5 @@
 
 echo "Running $0 Script"
 
-bash component/frontend.sh
-bash component/mongodb.sh
+bash components/frontend.sh
+bash components/mongodb.sh
