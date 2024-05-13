@@ -1,5 +1,7 @@
 #!bin/bash
 
+echo -e "\n\e[32m ********__________$COMPONENT Component Configuration Is Started ********__________ \e[0m"
+
 # Check whether the user have root access,, if not exit the script
 ID=$(id -u)
 COMPONENT="frontend"
