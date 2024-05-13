@@ -12,8 +12,6 @@ if [ $ID -ne 0 ]; then
     exit 1
 fi
 
-LOGFILE = "/tmp/frontend.log"
-
 echo -n "Installing Nginx web server :" 
 dnf install nginx -y      &>>  /tmp/frontend.log
 if [ $? -eq 0 ]; then
