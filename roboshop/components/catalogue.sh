@@ -32,8 +32,8 @@ echo -n "Installing NodeJS : "
 dnf install nodejs -y         &>> $LOGFILE
 status $?
 
-echo -n "Creating $APPUSER user account : "
-id $APPUSER
+echo  "Creating $APPUSER user account : "
+id -n $APPUSER
 if [ $? -ne 0 ];then
     useradd $APPUSER
     status $?
