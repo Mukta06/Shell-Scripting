@@ -34,7 +34,7 @@ status $?
 
 echo -n "Creating $APPUSER user account : "
 id $APPUSER
-if [ $? -eq 0 ];then
+if [ $? -ne 0 ];then
     useradd $APPUSER
     status $?
 else 
