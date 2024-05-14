@@ -14,9 +14,9 @@ fi
 
 status(){
     if [ $1 -eq 0 ];then
-        echo "\e32m SUCCESS \e0m"
+        echo -e "\e32m SUCCESS \e0m"
     else
-        echo "\e[31m FAILURE \e0m"
+        echo -e "\e[31m FAILURE \e0m"
 
     fi
 
@@ -24,7 +24,7 @@ status(){
 
 echo -n "Configuring $COMPONENT repo :"
 
-curl  $MONGO_REPO > /etc/yum.repos.d/mongodb.repo &>> $LOGFILE
+curl  $MONGO_REPO > /etc/yum.repos.d/mongodb.repo 
 # curl -s -o /etc/yum.repos.d/mongodb.repo $MONGO_REPO    ----> We can use any of this curl command 
 status $?
 
