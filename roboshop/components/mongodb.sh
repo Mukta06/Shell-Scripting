@@ -7,13 +7,13 @@ COMPONENT="mongodb"
 LOGFILE="/tmp/$COMPONENT.log"
 MONGO_REPO="https://raw.githubusercontent.com/stans-robot-project/mongodb/main/mongo.repo"
 
-if[$ID -ne 0]; then
+if[ $ID -ne 0 ]; then
     echo "\e[31m This Script is expected to run with SUDO \nEX: sudo bash Scriptname \e[0m"
     exit 1
 fi
 
 status(){
-    if[$1 -eq 0];then
+    if[ $1 -eq 0 ];then
         echo "\e32m SUCCESS \e0m"
     else
         echo "\e[31m FAILURE \e0m"
