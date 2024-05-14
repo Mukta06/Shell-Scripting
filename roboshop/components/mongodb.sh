@@ -24,7 +24,7 @@ status(){
 
 echo -n "Configuring $COMPONENT repo :"
 
-curl  $MONGO_REPO > /etc/yum.repos.d/mongodb.repo 
+curl  $MONGO_REPO > /etc/yum.repos.d/mongodb.repo &>> $LOGFILE
 # curl -s -o /etc/yum.repos.d/mongodb.repo $MONGO_REPO    ----> We can use any of this curl command 
 status $?
 
@@ -36,11 +36,15 @@ echo -n "Enabling $COMPONENT : "
 systemctl enable mongod      &>> $LOGFILE
 status $?
 
+echo -n "Starting $COMPONENT : "
+systemctl start mongod      &>> $LOGFILE
+status $?
+
 echo -n "Enabling $COMPONENT Visibility : "
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf   
 #sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 status $?
 
-echo -n "Starting $COMPONENT : "
-systemctl start mongod      &>> $LOGFILE
+echo -n "Restarting $COMPONENT : "
+systemctl restart mongod      &>> $LOGFILE
 status $?
