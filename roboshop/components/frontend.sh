@@ -5,7 +5,7 @@ echo -e "\n\e[35m ********__________$COMPONENT Component Configuration Is Starte
 # Check whether the user have root access,, if not exit the script
 ID=$(id -u)
 COMPONENT="frontend"
-LOGFILE="/tmp/$COMPONENT"
+LOGFILE="/tmp/$COMPONENT.log"
 
 if [ $ID -ne 0 ]; then
     echo -e "\e[31m This script is expected to run with sudo \e[0m \n\e[33m EX : sudo bash Scriptname\e[0m"
