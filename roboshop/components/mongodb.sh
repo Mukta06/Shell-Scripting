@@ -37,7 +37,8 @@ systemctl enable mongod      &>> $LOGFILE
 status $?
 
 echo -n "Enabling $COMPONENT Visibility : "
-sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf   &>> $LOGFILE
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf   
+#sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 status $?
 
 echo -n "Starting $COMPONENT : "
