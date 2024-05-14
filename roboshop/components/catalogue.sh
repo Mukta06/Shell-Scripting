@@ -38,6 +38,7 @@ if [ $? -ne 0 ];then
     useradd $APPUSER
     status $?
 else 
-    echo -e "\e[32m User already exists \e[0m \n\e[33m SKIPPING \e[0m"
+    echo -n -e "\e[32m User already exists : \e[0m "  $(id $APPUSER)
+    echo -e "\e[33m SKIPPING \e[0m"
 
 fi
