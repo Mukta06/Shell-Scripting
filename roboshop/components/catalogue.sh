@@ -6,10 +6,11 @@ ID=$(id -u)
 LOGFILE="/tmp/$COMPONENT.log"
 APPUSER="roboshop"
 
-if [$ID -ne 0];then
+if [ $ID -ne 0 ]; then
     echo -e "\e[31m This Script Should Be Executed With SUDO \e[0m"
     exit 1
 fi
+
 status(){
     if [$1 -eq 0];then
         echo -e "\e[32m SUCCESS \e[0m"
