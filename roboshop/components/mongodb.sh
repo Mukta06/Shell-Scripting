@@ -5,7 +5,7 @@ COMPONENT="mongodb"
 echo -e "\e[35m ********_________ $COMPONENT Component Configuration Is Started __________******** \e[0m"
 
 ID=$(id -u)
-LOGFILE="/tmp/$COMPONENT.log"
+LOGFILE="/tmp/${COMPONENT}.log"
 MONGO_REPO="https://raw.githubusercontent.com/stans-robot-project/mongodb/main/mongo.repo"
 SCHEMA_URL="https://github.com/stans-robot-project/mongodb/archive/main.zip"
 
@@ -57,7 +57,7 @@ status $?
 
 echo -n "Extracting $COMPONENT Schema : "
 cd /tmp
-unzip ${COMPONENT}.zip   &>> $LOGFILE
+unzip -o ${COMPONENT}.zip   &>> $LOGFILE
 status $?
 
 echo -n "Injecting the schema : "
