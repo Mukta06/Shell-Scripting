@@ -32,6 +32,12 @@ echo -n "Installing NodeJS : "
 dnf install nodejs -y         &>> $LOGFILE
 status $?
 
-echo -n "Creating $APPUSER user account: "
-useradd $APPUSER
-status $?
+echo -n "Creating $APPUSER user account : "
+id $APPUSER
+if [ $? -eq 0 ];then
+    useradd $APPUSER
+    status $?
+else 
+    echo -e "\e[32m User already exists \[0m \n\e[33m SKIPPING \e[0m"
+
+fi
