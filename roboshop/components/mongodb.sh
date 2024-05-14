@@ -1,11 +1,12 @@
 #!bin/bash 
 
-echo -e "\e[35m ********_________ Component Configuration Is Started__________******** \e[0m"
+echo -e "\e[35m ********_________ $COMPONENT Component Configuration Is Started __________******** \e[0m"
 
 ID=$(id -u)
 COMPONENT="mongodb"
 LOGFILE="/tmp/$COMPONENT.log"
 MONGO_REPO="https://raw.githubusercontent.com/stans-robot-project/mongodb/main/mongo.repo"
+SCHEMA_URL="https://github.com/stans-robot-project/mongodb/archive/main.zip"
 
 if [ $ID -ne 0 ]; then
     echo -e "\e[31m This Script is expected to run with SUDO \n EX: sudo bash Scriptname \e[0m"
@@ -48,3 +49,20 @@ status $?
 echo -n "Restarting $COMPONENT : "
 systemctl restart mongod      &>> $LOGFILE
 status $?
+
+echo -n "Downloading schema file : "
+curl -s -L -o /tmp/$COMPONENT.zip $SCHEMA_URL   &>> $LOGFILE
+status $?
+
+echo -n "Extracting $COMPONENT Schema : "
+cd /tmp
+unzip ${COMPONENT}.zip   &>> $LOGFILE
+status $?
+
+echo -n "Injecting the schema : "
+cd /tmp/$COMPONENT-main
+mongo < catalogue.js   &>> $LOGFILE
+mongo < users.js       &>> $LOGFILE
+status $?
+
+echo -e "\e[35m ********__________ $COMPONENT Component Configuration Is Completed __________******** \e[0m"
