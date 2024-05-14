@@ -24,7 +24,7 @@ status(){
 
 echo -n "Configuring $COMPONENT repo :"
 
-curl  $MONGO_REPO > /etc/yum.repos.d/mongodb.repo &>> $LOGFILE
+curl  $MONGO_REPO > /etc/yum.repos.d/mongodb.repo 
 # curl -s -o /etc/yum.repos.d/mongodb.repo $MONGO_REPO    ----> We can use any of this curl command 
 status $?
 
