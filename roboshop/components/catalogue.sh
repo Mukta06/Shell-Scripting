@@ -39,6 +39,6 @@ if [ $? -ne 0 ];then
     status $?
 else 
     echo -n -e "\e[32m User already exists : \e[0m "  $(id $APPUSER)
-    echo -e "\e[33m SKIPPING \e[0m"
+    echo -e "\n\e[33m SKIPPING \e[0m"
 
 fi
