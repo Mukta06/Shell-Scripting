@@ -6,6 +6,7 @@ echo -e "\n\e[35m ********__________$COMPONENT Component Configuration Is Starte
 ID=$(id -u)
 COMPONENT="frontend"
 LOGFILE="/tmp/$COMPONENT.log"
+CONFIG_DIR="/etc/nginx/default.d/roboshop.conf"
 
 if [ $ID -ne 0 ]; then
     echo -e "\e[31m This script is expected to run with sudo \e[0m \n\e[33m EX : sudo bash Scriptname\e[0m"
@@ -49,6 +50,10 @@ mv $COMPONENT-main/* .
 mv static/* .
 rm -rf ${COMPONENT}-main README.md
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
+status $?
+
+echo -n "Updating the Proxy : "
+sed -i -e "/catalogue/s/localhost/catalogue.roboshop.internal/"  $CONFIG_DIR
 status $?
 
 echo -n "Restart Nginx server :"
