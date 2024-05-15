@@ -35,7 +35,7 @@ dnf install nodejs -y         &>> $LOGFILE
 status $?
 
 echo -n "Creating $APPUSER user account : "
-id  $APPUSER
+id  $APPUSER     &>> $LOGFILE
 if [ $? -ne 0 ];then
     useradd $APPUSER
     status $?
@@ -75,8 +75,8 @@ status $?
 
 echo -n "Starting $COMPONENT Services : "
 systemctl daemon-reload
-systemctl enable $COMPONENT
-systemctl restart $COMPONENT
+systemctl enable $COMPONENT    &>> $LOGFILE
+systemctl restart $COMPONENT   &>> $LOGFILE
 status $?
 
 echo -e "\e[35m *******__________ $COMPONENT Component Configuration Is Completed __________******** \e[0m"
