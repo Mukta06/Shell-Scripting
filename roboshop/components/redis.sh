@@ -34,8 +34,8 @@ status $?
 
 echo -n "Congfiguring $COMPONENT Services : "
 
-sed -i -e 's/127.0.0.1/0.0.0.0'  /etc/redis.conf  
-sed -i -e 's/127.0.0.1/0.0.0.0'  /etc/redis/redis.conf
+sed -i -e 's/127.0.0.1/0.0.0.0/'  /etc/redis.conf  
+sed -i -e 's/127.0.0.1/0.0.0.0/'  /etc/redis/redis.conf
 status $?
 
 echo -n "Enabling $COMPONENT Services : "
