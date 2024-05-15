@@ -6,7 +6,7 @@ ID=$(id -u)
 REDIS_REPO="https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y"
 LOGFILE="/tmp/$COMPONENT.log"
 
-if [ $ID -eq 0 ];then
+if [ $ID -ne 0 ];then
     echo -e "\e[32m This Script Should Be Executed With SUDO \e[0m"
     exit 1
 fi
