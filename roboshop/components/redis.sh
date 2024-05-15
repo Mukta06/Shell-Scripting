@@ -21,15 +21,21 @@ status(){
 
 
 echo -n "Downloading $COMPONENT  components :"
-dnf install $REDIS_REPO    &>> LOGFILE
+dnf install $REDIS_REPO    &>> $LOGFILE
 status $?
 
 echo -n "Enabling $COMPONENT Module : "
-dnf module enable redis:remi-6.2 -y   &>> LOGFILE
+dnf module enable redis:remi-6.2 -y   &>> $LOGFILE
 status $? 
 
 echo -n "Installing $COMPONENT : "
-dnf install redis -y      &>> LOGFILE
+dnf install redis -y      &>> $LOGFILE
 status $?
 
 echo -n "Congfiguring $COMPONENT Services : "
+
+#sed -e 's/127.0.0.1/0.0.0.0' /etc/redis.conf  /etc/redis/redis.conf
+
+
+# vim /etc/redis.conf
+# vim /etc/redis/redis.conf
