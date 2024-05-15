@@ -41,5 +41,6 @@ status $?
 echo -n "Enabling $COMPONENT Services : "
 systemctl enable $COMPONENT     &>> $LOGFILE
 systemctl restart $COMPONENT    &>> $LOGFILE
+status $?
 
 echo -e "\e[35m *******__________$COMPONENT Component Configuration Is  Completed __________******** "
