@@ -9,7 +9,7 @@ APPUSER="roboshop"
 APPUSER_DIR="/home/$APPUSER/$COMPONENT"
 
 if [ $ID -ne 0 ];then
-    echo -e "\31m This Script Should Be Executed With SUDO \e[0m"
+    echo -e "\e[31m This Script Should Be Executed With SUDO \e[0m"
     exit 1
 fi
 
