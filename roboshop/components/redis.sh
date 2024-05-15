@@ -34,8 +34,12 @@ status $?
 
 echo -n "Congfiguring $COMPONENT Services : "
 
-#sed -e 's/127.0.0.1/0.0.0.0' /etc/redis.conf  /etc/redis/redis.conf
+sed -i -e 's/127.0.0.1/0.0.0.0'  /etc/redis.conf  
+sed -i -e 's/127.0.0.1/0.0.0.0'  /etc/redis/redis.conf
+status $?
 
+echo -n "Enabling $COMPONENT Services : "
+systemctl enable $COMPONENT     &>> $LOGFILE
+systemctl restart $COMPONENT    &>> $LOGFILE
 
-# vim /etc/redis.conf
-# vim /etc/redis/redis.conf
+echo -e "\e[35m *******__________$COMPONENT Component Configuration Is  Completed __________******** "
