@@ -47,6 +47,9 @@ echo -n "Downloading $COMPONENT Components : "
 curl -s -L -o /tmp/user.zip $USER_REPO      &>> $LOGFILE
 status $?
 
+echo -n "Performing Cleanup : "
+rm -rf $APPUSER_DIR
+
 echo -n "Extracting $COMPONENT Components : "
 cd /home/$APPUSER
 unzip /tmp/user.zip          &>> $LOGFILE
