@@ -6,7 +6,7 @@ ID=$(id -u)
 LOGFILE="/tmp/$COMPONENT.log"
 APPUSER="roboshop"
 CATALOGUE_REPO="https://github.com/stans-robot-project/$COMPONENT/archive/main.zip"
-APPUSER_DIR="/home/roboshop/$COMPONENT"
+APPUSER_DIR="/home/$APPUSER/$COMPONENT"
 
 if [ $ID -ne 0 ]; then
     echo -e "\e[31m This Script Should Be Executed With SUDO \e[0m"
