@@ -59,14 +59,19 @@ status $?
 echo -n "Install NPM : "
 cd $APPUSER_DIR
 npm install     &>> $LOGFILE
+status $?
 
-#echo -n "Configuring $COMPONENT Services : "
-#sed -i -e 's/'
-#$ vim /home/roboshop/user/systemd.service
+echo -n "Configuring $COMPONENT Services : "
+sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' $APPUSER_DIR/systemd.service
+cat systemd.service
+mv $APPUSER_DIR/systemd.service /etc/systemd/system/$COMPONENT.service
+status $?
+ 
 
-#Update `REDIS_ENDPOINT` with Redis Server IP
-#Update `MONGO_ENDPOINT` with MongoDB Server IP
-# mv /home/roboshop/user/systemd.service /etc/systemd/system/user.service
-# systemctl daemon-reload
-# systemctl start user
-# systemctl enable user
+echo -n "Stating $COMPONENT Services : "
+systemctl enable user
+systemctl restart user
+status $?
+
+
+echo -e "\e[35m ********___________$COMPONENT Component Configuration Is Completed __________******* \e[0m"
