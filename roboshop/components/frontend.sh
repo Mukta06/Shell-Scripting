@@ -55,8 +55,9 @@ status $?
 echo -n "Updating the Proxy : "
 for i in catalogue user ; do
     sed -i -e "/$i/s/localhost/$i.roboshop.internal/"  $CONFIG_DIR
-    status $?
+   
 done
+ status $?
 
 echo -n "Restart Nginx server :"
 systemctl restart nginx     &>>  $LOGFILE
