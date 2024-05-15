@@ -53,8 +53,10 @@ mv localhost.conf /etc/nginx/default.d/roboshop.conf
 status $?
 
 echo -n "Updating the Proxy : "
-sed -i -e "/catalogue/s/localhost/catalogue.roboshop.internal/"  $CONFIG_DIR
-status $?
+for i in catalogue user ; do
+    sed -i -e "/i/s/localhost/i.roboshop.internal/"  $CONFIG_DIR
+    status $?
+done
 
 echo -n "Restart Nginx server :"
 systemctl restart nginx     &>>  $LOGFILE
