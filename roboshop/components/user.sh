@@ -37,8 +37,8 @@ status $?
 echo -n "Adding User : "
 id $APPUSER            &>> $LOGFILE
 if [ $? -eq 0 ];then
-    echo -n "\e[33m SKIPPING \e[0m"
-    echo -e "\e[35m User Already Exists : id ${APPUSER} \e[0m"
+    echo -e "\e[33m SKIPPING \e[0m"
+    echo -e "\e[35m User Already Exists :  \e[0m $(id $APPUSER)"
 else 
     useradd $APPUSER
 fi
@@ -63,7 +63,7 @@ status $?
 
 echo -n "Configuring $COMPONENT Services : "
 sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' $APPUSER_DIR/systemd.service
-cat systemd.service
+cat systemd.service    &>> $LOGFILE
 mv $APPUSER_DIR/systemd.service /etc/systemd/system/$COMPONENT.service
 status $?
  
