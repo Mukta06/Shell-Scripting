@@ -49,10 +49,11 @@ status $?
 
 echo -n "Performing Cleanup : "
 rm -rf $APPUSER_DIR
+status $?
 
 echo -n "Extracting $COMPONENT Components : "
 cd /home/$APPUSER
-unzip /tmp/user.zip          &>> $LOGFILE
+unzip -o /tmp/user.zip          &>> $LOGFILE
 
 echo -n "Configuring Permissions : "
 mv /home/${APPUSER}/user-main  $APPUSER_DIR    &>> $LOGFILE
