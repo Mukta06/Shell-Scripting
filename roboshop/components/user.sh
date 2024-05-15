@@ -54,6 +54,7 @@ status $?
 echo -n "Extracting $COMPONENT Components : "
 cd /home/$APPUSER
 unzip -o /tmp/user.zip          &>> $LOGFILE
+status $?
 
 echo -n "Configuring Permissions : "
 mv /home/${APPUSER}/user-main  $APPUSER_DIR    &>> $LOGFILE
