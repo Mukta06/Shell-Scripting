@@ -14,7 +14,7 @@ if [ $ID -ne 0 ];then
 fi
 
 status(){
-    if [$1 -eq 0 ];then
+    if [ $1 -eq 0 ];then
         echo -e "\e[32m SUCCESS \e[0m"
     else
         echo -e "\e[32m FAILURE \e[0m"
@@ -36,7 +36,7 @@ status $?
 
 echo -n "Adding User : "
 id $APPUSER            &>> $LOGFILE
-if [$? -eq 0 ];then
+if [ $? -eq 0 ];then
     echo -n "\e[33m SKIPPING \e[0m"
     echo -e "\e[35m User Already Exists : id ${APPUSER} \e[0m"
 else 
