@@ -54,7 +54,7 @@ status $?
 
 echo -n "Updating the Proxy : "
 for i in catalogue user ; do
-    sed -i -e "/i/s/localhost/i.roboshop.internal/"  $CONFIG_DIR
+    sed -i -e "/$i/s/localhost/$i.roboshop.internal/"  $CONFIG_DIR
     status $?
 done
 
