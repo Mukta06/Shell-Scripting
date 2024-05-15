@@ -5,6 +5,8 @@ echo -e "\e[35m *******__________ $COMPONENT Component Configuration Is Started 
 ID=$(id -u)
 LOGFILE="/tmp/$COMPONENT.log"
 APPUSER="roboshop"
+CATALOGUE_REPO="https://github.com/stans-robot-project/$COMPONENT/archive/main.zip"
+APPUSER_DIR="/home/roboshop/$COMPONENT"
 
 if [ $ID -ne 0 ]; then
     echo -e "\e[31m This Script Should Be Executed With SUDO \e[0m"
@@ -42,3 +44,22 @@ else
     echo -e "\n\e[33m SKIPPING \e[0m"
 
 fi
+
+echo -n "Downloading $COMPONENT Repo : "
+curl -s -L -o /tmp/$COMPONENT.zip  $CATALOGUE_REPO    &>> $LOGFILE
+status $?
+
+echo -n "Extracting $COMPONENT Components : " 
+cd /home/roboshop
+unzip -o /tmp/$COMPONENT.zip        &>> $LOGFILE
+status $?
+
+echo -n "Configuring Permissions : "
+mv /home/roboshop/$COMPONENT-main  $APPUSER_DIR     &>> $LOGFILE
+chown -R ${APPUSER}:${APPUSER} $APPUSER_DIR
+status $?
+
+echo -n "Generating $COMPONENT Artifacts : "
+cd $APPUSER_DIR
+npm install                     &>> $LOGFILE
+status $?
