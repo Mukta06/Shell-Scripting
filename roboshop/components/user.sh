@@ -58,7 +58,7 @@ status $?
 
 echo -n "Install NPM : "
 cd $APPUSER_DIR
-npm install
+npm install     &>> $LOGFILE
 
 #echo -n "Configuring $COMPONENT Services : "
 #sed -i -e 's/'
