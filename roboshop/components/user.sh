@@ -38,7 +38,7 @@ echo -n "Adding User : "
 id $APPUSER            &>> $LOGFILE
 if [ $? -eq 0 ];then
     echo -e "\e[33m SKIPPING \e[0m"
-    echo -e "\e[35mUser Already Exists :  \e[0m $(id $APPUSER)"
+    echo -e "\e[36mUser Already Exists :  \e[0m $(id $APPUSER)"
 else 
     useradd $APPUSER
 fi
