@@ -49,6 +49,10 @@ echo -n "Downloading $COMPONENT Repo : "
 curl -s -L -o /tmp/$COMPONENT.zip  $CATALOGUE_REPO    &>> $LOGFILE
 status $?
 
+echo -n "Performing CleanUp : "
+rm -rf $APPUSER_DIR
+status $?
+
 echo -n "Extracting $COMPONENT Components : " 
 cd /home/roboshop
 unzip -o /tmp/$COMPONENT.zip        &>> $LOGFILE
@@ -63,3 +67,18 @@ echo -n "Generating $COMPONENT Artifacts : "
 cd $APPUSER_DIR
 npm install                     &>> $LOGFILE
 status $?
+
+echo -n "Configuring $COMPONENT Services : "
+sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' ${APPUSER_DIR}/systemd.service
+mv ${APPUSER_DIR}/systemd.service /etc/systemd/system/${COMPONENT}.service
+status $?
+
+echo -n "Starting $COMPONENT Services : "
+systemctl daemon-reload
+systemctl enable $COMPONENT
+systemctl restart $COMPONENT
+status $?
+
+echo -e "\e[35m *******__________ $COMPONENT Component Configuration Is Completed __________******** \e[0m"
+
+
