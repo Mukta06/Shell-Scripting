@@ -17,7 +17,7 @@ status(){
 
 DOWNLOAD_AND_EXTRACT(){
     echo -n "Downloading $COMPONENT Repo : "
-    curl -s -L -o /tmp/$COMPONENT.zip  $CATALOGUE_REPO    &>> $LOGFILE
+    curl -s -L -o /tmp/$COMPONENT.zip  "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip"    &>> $LOGFILE
     status $?
 
     echo -n "Performing CleanUp : "

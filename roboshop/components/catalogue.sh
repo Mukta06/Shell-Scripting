@@ -6,7 +6,6 @@ echo -e "\e[35m *******__________ $COMPONENT Component Configuration Is Started 
 source components/common.sh
 LOGFILE="/tmp/$COMPONENT.log"
 APPUSER="roboshop"
-CATALOGUE_REPO="https://github.com/stans-robot-project/$COMPONENT/archive/main.zip"
 APPUSER_DIR="/home/$APPUSER/$COMPONENT"
 
 # Calling NODEJS Function From common.sh File 
