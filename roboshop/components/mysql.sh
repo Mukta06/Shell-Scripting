@@ -1,7 +1,7 @@
 #!/bin/bash
 
 COMPONENT="mysql"
-echo -e "\e[35m*******_________$COMPONENT Component Configuration Is Started__________********"
+echo -e "\e[35m*******_________$COMPONENT Component Configuration Is Started__________******** \e[0m"
 
 MYSQL_REPO="https://raw.githubusercontent.com/stans-robot-project/$COMPONENT/main/mysql.repo"
 MYSQL_SCHEMA="https://github.com/stans-robot-project/mysql/archive/main.zip"
