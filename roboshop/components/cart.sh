@@ -1,7 +1,7 @@
 #!/bin/bash
 
 COMPONENT="cart"
-echo -e "\e[35m_________********$COMPONENT Component Configuration Is Started_________********"
+echo -e "\e[35m_________********$COMPONENT Component Configuration Is Started_________******** \e[0m"
 ID=$(id -u)
 LOGFILE="/tmp/$COMPONENT.log"
 CART_REPO="https://github.com/stans-robot-project/cart/archive/main.zip"
