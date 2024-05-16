@@ -1,5 +1,9 @@
 #!/bin/bash
 
+
+LOGFILE="/tmp/$COMPONENT.log"
+APPUSER="roboshop"
+APPUSER_DIR="/home/$APPUSER/$COMPONENT"
 ID=$(id -u)
 if [ $ID -ne 0 ]; then
     echo -e "\e[31m This script is expected to run with sudo \e[0m \n\e[33m EX : sudo bash Scriptname\e[0m"
@@ -43,6 +47,28 @@ CREATE_USER(){
     fi
 }
 
+CONFIG_SERVICE(){
+
+    echo -n "Configuring Permissions : "
+    mv /home/$APPUSER/$COMPONENT-main  $APPUSER_DIR     &>> $LOGFILE
+    chown -R ${APPUSER}:${APPUSER} $APPUSER_DIR
+    status $?
+
+    echo -n "Configuring $COMPONENT Services : "
+    sed -i -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' ${APPUSER_DIR}/systemd.service
+    mv ${APPUSER_DIR}/systemd.service /etc/systemd/system/${COMPONENT}.service
+    status $?
+
+}
+
+START_SERVICE(){
+    echo -n "Starting $COMPONENT Services : "
+    systemctl daemon-reload
+    systemctl enable $COMPONENT    &>> $LOGFILE
+    systemctl restart $COMPONENT   &>> $LOGFILE
+    status $?
+}
+
 # Declaring NodeJS Function
 
 NODEJS(){
@@ -60,6 +86,14 @@ NODEJS(){
 
     CREATE_USER  # Calling Function fron another Function
     DOWNLOAD_AND_EXTRACT 
+    CONFIG_SERVICE
+
+    echo -n "Generating $COMPONENT Artifacts : "
+    cd $APPUSER_DIR
+    npm install                     &>> $LOGFILE
+    status $?
+
+    START_SERVICE
     
 }
 
