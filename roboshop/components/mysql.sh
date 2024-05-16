@@ -4,7 +4,7 @@ COMPONENT="mysql"
 echo -e "\e[35m*******_________$COMPONENT Component Configuration Is Started__________******** \e[0m"
 
 MYSQL_REPO="https://raw.githubusercontent.com/stans-robot-project/$COMPONENT/main/mysql.repo"
-MYSQL_SCHEMA="https://github.com/stans-robot-project/mysql/archive/main.zip"
+SCHEMA_URL="https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
 
 source components/common.sh
 
@@ -32,5 +32,13 @@ if [ $? -ne 0 ];then
     echo -n "Changing Default Root Password : "
     echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1'" | mysql --connect-expired-password -uroot -p$DEFAULT_ROOT_PASS     &>> $LOGFILE
     status $?
-
 fi
+
+echo -n "Download and Extracting $COMPONENT Schema : "
+curl -s -L -o /tmp/$COMPONENT.zip  $MYSQL_SCHEMA   &>> $LOGFILE
+unzip -o /tmp/mysql.zip
+status $?
+
+echo -n "Injecting Schema : "
+cd /tmp/$COMPONENT-main
+mysql -u root -pRoboShop@1 <shipping.sql
