@@ -42,5 +42,5 @@ status $?
 
 echo -n "Injecting Schema : "
 cd /tmp/$COMPONENT-main
-mysql -u root -pRoboShop@1 <shipping.sql
+mysql -u root -pRoboShop@1 <shipping.sql    &>> $LOGFILE
 status $?
