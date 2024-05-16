@@ -14,9 +14,9 @@ if [ $ID -ne 0 ];then
 fi
 status(){
     if [ $1 -eq 0 ];then
-        echo -e "\e[31m SUCCESS \e[0m"
+        echo -e "\e[32m SUCCESS \e[0m"
     else
-        echo -e "\e[32m FAILURE \e[0m"
+        echo -e "\e[31m FAILURE \e[0m"
     fi 
 }
 
@@ -53,7 +53,7 @@ status $?
 
 echo -n "Install NPM : "
 cd $APPUSER_DIR
-npm install
+npm install     &>> $LOGFILE
 status $?
 
 #Update REDIS_ENDPOINT with REDIS server IP Address
