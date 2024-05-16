@@ -50,6 +50,7 @@ mv $COMPONENT-main/* .
 mv static/* .
 rm -rf ${COMPONENT}-main README.md
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
+systemctl daemon-reload
 status $?
 
 echo -n "Updating the Proxy : "
