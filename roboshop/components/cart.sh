@@ -66,8 +66,8 @@ npm install     &>> $LOGFILE
 status $?
 
 echo -n "Configuring $COMPONENT Services : "
-sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e '/s/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' $APPUSER_DIR/systemd.service
-mv $APPUSER_DIR/systemd.service  /etc/systemd/system/$COMPONENT.service
+sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' $APPUSER_DIR/systemd.service
+mv $APPUSER_DIR/systemd.service  /etc/systemd/system/$COMPONENT.service     &>> $LOGFILE
 status $? 
 
 
