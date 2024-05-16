@@ -55,7 +55,7 @@ CONFIG_SERVICE(){
     status $?
 
     echo -n "Configuring $COMPONENT Services : "
-    sed -i -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' ${APPUSER_DIR}/systemd.service
+    sed -i -e 's/DBHOST/mysql.roboshop.internal/' -e 's/CARTENDPOINT/cart.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' ${APPUSER_DIR}/systemd.service
     mv ${APPUSER_DIR}/systemd.service /etc/systemd/system/${COMPONENT}.service
     status $?
 
@@ -95,6 +95,26 @@ NODEJS(){
 
     START_SERVICE
     
+}
+
+MAVEN(){
+
+    echo -n "Installing Maven : "
+    dnf install maven -y   &>> $LOGFILE
+    status $?
+
+    CREATE_USER
+    DOWNLOAD_AND_EXTRACT
+
+    echo -n "Generating $COMPONENT Artifacts : "
+    mv shipping-main $COMPONENT    &>> $LOGFILE
+    cd $APPUSER_DIR 
+    mvn clean package     &>> $LOGFILE
+    mv target/${COMPONENT}-1.0.jar $COMPONENT.jar     &>> $LOGFILE
+    status $?
+
+    CONFIG_SERVICE
+
 }
 
 
