@@ -5,7 +5,6 @@ echo -e "\e[35m_________********$COMPONENT Component Configuration Is Started___
 #All the repeted functions are placed here
 source components/common.sh
 LOGFILE="/tmp/$COMPONENT.log"
-CART_REPO="https://github.com/stans-robot-project/cart/archive/main.zip"
 APPUSER="roboshop"
 APPUSER_DIR="/home/${APPUSER}/${COMPONENT}"
 

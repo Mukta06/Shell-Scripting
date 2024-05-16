@@ -1,9 +1,10 @@
 #!/bin/bash
 
 COMPONENT="user"
+#All the repeted functions are placed here
+source components/common.sh
 echo -e "\e[35m ********___________ ${COMPONENT} Component Configuration Is Started __________******** \e[0m"
 LOGFILE="/tmp/$COMPONENT.log"
-USER_REPO="https://github.com/stans-robot-project/user/archive/main.zip"
 APPUSER="roboshop"
 APPUSER_DIR="/home/$APPUSER/$COMPONENT"
 
