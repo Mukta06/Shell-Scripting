@@ -5,6 +5,7 @@ echo -e "\e[35m*******_________$COMPONENT Component Configuration Is Started____
 
 MYSQL_REPO="https://raw.githubusercontent.com/stans-robot-project/$COMPONENT/main/mysql.repo"
 SCHEMA_URL="https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
+MYSQL_PWD=${2}
 
 source components/common.sh
 
@@ -27,10 +28,18 @@ echo -n "Featching $COMPONENT Default Password  : "
 DEFAULT_ROOT_PASS=$(grep "temporary password" /var/log/mysqld.log |awk -F " " '{print $NF}')   &>> $LOGFILE
 status $?
 
-echo "show databases;" | mysql -uroot -pRoboShop@1   &>> $LOGFILE
+echo "show databases;" | mysql -uroot -p${MYSQL_PWD}   &>> $LOGFILE
 if [ $? -ne 0 ];then
     echo -n "Changing Default Root Password : "
-    echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1'" | mysql --connect-expired-password -uroot -p$DEFAULT_ROOT_PASS     &>> $LOGFILE
+    echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_PWD}'" | mysql --connect-expired-password -uroot -p$DEFAULT_ROOT_PASS     &>> $LOGFILE
+    status $?
+fi
+
+echo "show plugins;" | mysql -uroot -p${MYSQL_PWD} |grep validate_password   &>> $LOGFILE
+if [ $? -ne 0 ];then
+    echo -n "Uninstalling Validate Password Plugin : "
+    echo "uninstall plugin validate_password;" | mysql -uroot -p${MYSQL_PWD}    &>> $LOGFILE
+    echo "show databases;" | mysql -uroot -p${MYSQL_PWD}   &>> $LOGFILE
     status $?
 fi
 
@@ -42,5 +51,5 @@ status $?
 
 echo -n "Injecting Schema : "
 cd /tmp/$COMPONENT-main
-mysql -u root -pRoboShop@1 <shipping.sql    &>> $LOGFILE
+mysql -u root -p${MYSQL_PWD} <shipping.sql    &>> $LOGFILE
 status $?
