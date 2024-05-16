@@ -3,8 +3,9 @@
 COMPONENT="mysql"
 echo -e "\e[35m*******_________$COMPONENT Component Configuration Is Started__________******** \e[0m"
 
-MYSQL_REPO="https://raw.githubusercontent.com/stans-robot-project/$COMPONENT/main/mysql.repo"
-SCHEMA_URL="https://github.com/stans-robot-project/${COMPONENT}/blob/main/shipping.sql"
+MYSQL_REPO="https://raw.githubusercontent.com/stans-robot-project/${COMPONENT}/main/mysql.repo"
+SCHEMA_URL="https://raw.githubusercontent.com/stans-robot-project/${COMPONENT}/main/shipping.sql"
+#https://raw.githubusercontent.com/stans-robot-project/mysql/main/shipping.sql
 
 
 source components/common.sh
