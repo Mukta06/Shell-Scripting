@@ -55,8 +55,8 @@ unzip -o /tmp/cart.zip     &>> $LOGFILE
 status $?
 
 echo -n "Configuring $COMPONENT Permissions : "
-mv /home/$APPUSER/cart-main $APPUSER_DIR
-chown -R ${APPUSER}:${APPUSER} 
+mv /home/$APPUSER/cart-main  $APPUSER_DIR
+chown -R ${APPUSER}:${APPUSER} $APPUSER_DIR
 status $?
 
 echo -n "Install NPM : "
