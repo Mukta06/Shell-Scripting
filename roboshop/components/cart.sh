@@ -56,14 +56,16 @@ cd $APPUSER_DIR
 npm install     &>> $LOGFILE
 status $?
 
-#Update REDIS_ENDPOINT with REDIS server IP Address
-#Update CATALOGUE_ENDPOINT with Catalogue server IP address
-#$ vim systemd.service
-# mv /home/roboshop/cart/systemd.service /etc/systemd/system/cart.service
-# systemctl daemon-reload
-# systemctl start cart
-# systemctl enable cart
-# systemctl status cart -l
+echo -n "Configuring $COMPONENT Services : "
+sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e '/s/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' $APPUSER_DIR/systemd.service
+mv $APPUSER_DIR/systemd.service  /etc/systemd/system/$COMPONENT.service
+status $? 
 
-# vim /etc/nginx/default.d/roboshop.conf
-# systemctl restart nginx 
+
+echo -n "Enable $COMPONENT Service : "
+systemctl enable cart
+systemctl restart cart
+systemctl status cart -l     &>> $LOGFILE
+status $?
+
+echo -e "\e[35m********__________$COMPONENT Configuration Is Completed__________******** \e[0m"
