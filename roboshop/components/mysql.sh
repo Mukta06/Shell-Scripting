@@ -20,4 +20,17 @@ status $?
 echo -n "Enable MYSQL Service : "
 systemctl enable mysqld     &>> $LOGFILE
 systemctl start mysqld       &>> $LOGFILE
-status $?    
+status $?  
+
+
+echo -n "Featching $COMPONENT Default Password  : "
+DEFAULT_ROOT_PASS=$(grep "temporary password" /var/log/mysqld.log |awk -F " " '{print $NF}')   &>> $LOGFILE
+status $?
+
+echo "show databases;" | mysql -uroot -pRoboShop@1   &>> $LOGFILE
+if [ $? -ne 0 ];then
+    echo -n "Changing Default Root Password : "
+    echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1'" | mysql --connect-expired-password -uroot -p$DEFAULT_ROOT_PASS     &>> $LOGFILE
+    status $?
+
+fi
