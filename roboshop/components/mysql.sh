@@ -36,7 +36,8 @@ fi
 
 echo -n "Download and Extracting $COMPONENT Schema : "
 curl -s -L -o /tmp/$COMPONENT.zip  $MYSQL_SCHEMA   &>> $LOGFILE
-unzip -o /tmp/mysql.zip
+cd /tmp
+unzip -o mysql.zip
 status $?
 
 echo -n "Injecting Schema : "
