@@ -46,13 +46,17 @@ curl -s -L -o /tmp/${COMPONENT}.zip $CART_REPO     &>> $LOGFILE
 status $?
 
 echo -n "Performing Cleanup : "
-rm -rf /home/$APPUSER
+rm -rf $APPUSER_DIR
 status $?
 
 echo -n "Extracting $COMPONENT Components : "
 cd /home/$APPUSER
-unzip -o /tmp/${COMPONENT}.zip     &>> $LOGFILE
-mv /home/roboshop/cart-main $APPUSER_DIR
+unzip -o /tmp/cart.zip     &>> $LOGFILE
+status $?
+
+echo -n "Configuring $COMPONENT Permissions : "
+mv /home/$APPUSER/cart-main $APPUSER_DIR
+chown -R ${APPUSER}:${APPUSER} 
 status $?
 
 echo -n "Install NPM : "
