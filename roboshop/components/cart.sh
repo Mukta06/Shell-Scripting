@@ -2,23 +2,12 @@
 
 COMPONENT="cart"
 echo -e "\e[35m_________********$COMPONENT Component Configuration Is Started_________******** \e[0m"
-ID=$(id -u)
+#All the repeted functions are placed here
+source components/common.sh
 LOGFILE="/tmp/$COMPONENT.log"
 CART_REPO="https://github.com/stans-robot-project/cart/archive/main.zip"
 APPUSER="roboshop"
 APPUSER_DIR="/home/${APPUSER}/${COMPONENT}"
-
-if [ $ID -ne 0 ];then
-    echo -e "\e[32mThis Script Should Be Executed Using SUDO \e[0m"
-    exit 1
-fi
-status(){
-    if [ $1 -eq 0 ];then
-        echo -e "\e[32m SUCCESS \e[0m"
-    else
-        echo -e "\e[31m FAILURE \e[0m"
-    fi 
-}
 
 
 echo -n "Disable NodeJS : "

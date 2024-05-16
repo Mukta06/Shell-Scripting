@@ -4,25 +4,11 @@
 COMPONENT="mongodb"
 echo -e "\e[35m ********_________ $COMPONENT Component Configuration Is Started __________******** \e[0m"
 
-ID=$(id -u)
+#All the repeted functions are placed here
+source components/common.sh
 LOGFILE="/tmp/${COMPONENT}.log"
 MONGO_REPO="https://raw.githubusercontent.com/stans-robot-project/mongodb/main/mongo.repo"
 SCHEMA_URL="https://github.com/stans-robot-project/mongodb/archive/main.zip"
-
-if [ $ID -ne 0 ]; then
-    echo -e "\e[31m This Script is expected to run with SUDO \n EX: sudo bash Scriptname \e[0m"
-    exit 1
-fi
-
-status(){
-    if [ $1 -eq 0 ];then
-        echo -e "\e[32m SUCCESS \e[0m"
-    else
-        echo -e "\e[31m FAILURE \e[0m"
-
-    fi
-
-}
 
 echo -n "Configuring $COMPONENT repo :"
 

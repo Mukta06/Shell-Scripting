@@ -2,25 +2,10 @@
 
 COMPONENT="user"
 echo -e "\e[35m ********___________ ${COMPONENT} Component Configuration Is Started __________******** \e[0m"
-ID=$(id -u)
 LOGFILE="/tmp/$COMPONENT.log"
 USER_REPO="https://github.com/stans-robot-project/user/archive/main.zip"
 APPUSER="roboshop"
 APPUSER_DIR="/home/$APPUSER/$COMPONENT"
-
-if [ $ID -ne 0 ];then
-    echo -e "\e[31m This Script Should Be Executed With SUDO \e[0m"
-    exit 1
-fi
-
-status(){
-    if [ $1 -eq 0 ];then
-        echo -e "\e[32m SUCCESS \e[0m"
-    else
-        echo -e "\e[32m FAILURE \e[0m"
-    fi 
-}
-
 
 echo -n "Disable NodeJS Modules : "
 dnf module disable nodejs -y    &>> $LOGFILE

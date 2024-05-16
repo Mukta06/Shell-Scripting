@@ -2,25 +2,12 @@
 
 COMPONENT="catalogue"
 echo -e "\e[35m *******__________ $COMPONENT Component Configuration Is Started __________******** \e[0m"
-ID=$(id -u)
+#All the repeted functions are placed here
+source components/common.sh
 LOGFILE="/tmp/$COMPONENT.log"
 APPUSER="roboshop"
 CATALOGUE_REPO="https://github.com/stans-robot-project/$COMPONENT/archive/main.zip"
 APPUSER_DIR="/home/$APPUSER/$COMPONENT"
-
-if [ $ID -ne 0 ]; then
-    echo -e "\e[31m This Script Should Be Executed With SUDO \e[0m"
-    exit 1
-fi
-
-status(){
-    if [ $1 -eq 0 ];then
-        echo -e "\e[32m SUCCESS \e[0m"
-    else
-        echo -e "\e[31m FAILURE \e[0m"
-
-    fi
-}
 
 echo -n "Disable NodeJS : "
 dnf module disable nodejs -y  &>> $LOGFILE

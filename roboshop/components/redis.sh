@@ -2,22 +2,10 @@
 
 COMPONENT="redis"
 echo -e "\e[35m ********__________ $COMPONENT Component Configuration Is Started __________******** \e[0m"
-ID=$(id -u)
+#All the repeted functions are placed here
+source components/common.sh
 REDIS_REPO="https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y"
 LOGFILE="/tmp/$COMPONENT.log"
-
-if [ $ID -ne 0 ];then
-    echo -e "\e[32m This Script Should Be Executed With SUDO \e[0m"
-    exit 1
-fi
-
-status(){
-    if [ $1 -eq 0 ];then
-        echo -e "\e[32m SUCCESS \e[0m"
-    else
-        echo -e "\e[31m FAILURE \e[0m"
-    fi
-}
 
 
 echo -n "Downloading $COMPONENT  components :"
