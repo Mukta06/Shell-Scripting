@@ -45,12 +45,10 @@ if [ $? -ne 0 ];then
 fi
 
 echo -n "Download and Extracting $COMPONENT Schema : "
-curl -s -L -o /tmp/$COMPONENT.zip  $SCHEMA_URL   &>> $LOGFILE
 cd /tmp
-unzip -o mysql.zip    &>> $LOGFILE
+wget $SCHEMA_URL   &>> $LOGFILE
 status $?
 
 echo -n "Injecting Schema : "
-cd /tmp/$COMPONENT-main
-mysql -u root -pRoboShop@1 <shipping.sql    &>> $LOGFILE
+mysql -u root -pRoboShop@1 </tmp/shipping.sql    &>> $LOGFILE
 status $?
