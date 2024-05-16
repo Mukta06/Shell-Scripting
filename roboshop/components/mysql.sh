@@ -35,7 +35,7 @@ if [ $? -ne 0 ];then
 fi
 
 echo -n "Download and Extracting $COMPONENT Schema : "
-curl -s -L -o /tmp/$COMPONENT.zip  $MYSQL_SCHEMA   &>> $LOGFILE
+curl -s -L -o /tmp/$COMPONENT.zip  $SCHEMA_URL   &>> $LOGFILE
 cd /tmp
 unzip -o mysql.zip
 status $?
