@@ -115,6 +115,8 @@ MAVEN(){
 
     CONFIG_SERVICE
 
+    START_SERVICE
+
 }
 
 
