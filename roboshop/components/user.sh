@@ -7,39 +7,9 @@ USER_REPO="https://github.com/stans-robot-project/user/archive/main.zip"
 APPUSER="roboshop"
 APPUSER_DIR="/home/$APPUSER/$COMPONENT"
 
-echo -n "Disable NodeJS Modules : "
-dnf module disable nodejs -y    &>> $LOGFILE
-status $?
-
-echo -n "Enable NodeJS : "
-dnf module enable nodejs:18 -y   &>> $LOGFILE
-status $?
-
-echo -n "Install NodeJS : "
-dnf install nodejs -y       &>> $LOGFILE
-status $?
-
-echo -n "Adding User : "
-id $APPUSER            &>> $LOGFILE
-if [ $? -eq 0 ];then
-    echo -e "\e[33m SKIPPING \e[0m"
-    echo -e "\e[36mUser Already Exists :  \e[0m $(id $APPUSER)"
-else 
-    useradd $APPUSER
-fi
-
-echo -n "Downloading $COMPONENT Components : "
-curl -s -L -o /tmp/user.zip $USER_REPO      &>> $LOGFILE
-status $?
-
-echo -n "Performing Cleanup : "
-rm -rf $APPUSER_DIR
-status $?
-
-echo -n "Extracting $COMPONENT Components : "
-cd /home/$APPUSER
-unzip -o /tmp/user.zip          &>> $LOGFILE
-status $?
+# Calling NODEJS Function From common.sh File 
+# Perform Disable,,Enable,,Install NodeJS
+NODEJS
 
 echo -n "Configuring Permissions : "
 mv /home/${APPUSER}/user-main  $APPUSER_DIR    &>> $LOGFILE
