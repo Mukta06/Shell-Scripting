@@ -29,18 +29,18 @@ echo -n "Featching $COMPONENT Default Password  : "
 DEFAULT_ROOT_PASS=$(grep "temporary password" /var/log/mysqld.log |awk -F " " '{print $NF}')   &>> $LOGFILE
 status $?
 
-echo "show databases;" | mysql -uroot -pRoboShop@1   &>> $LOGFILE
+echo "show databases;" | mysql -uroot -p${mysql_root_password}   &>> $LOGFILE
 if [ $? -ne 0 ];then
     echo -n "Changing Default Root Password : "
-    echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1'" | mysql --connect-expired-password -uroot -p$DEFAULT_ROOT_PASS     &>> $LOGFILE
+    echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '${mysql_root_password}'" | mysql --connect-expired-password -uroot -p$DEFAULT_ROOT_PASS     &>> $LOGFILE
     status $?
 fi
 
-echo "show plugins;" | mysql -uroot -pRoboShop@1 |grep validate_password   &>> $LOGFILE
+echo "show plugins;" | mysql -uroot -p${mysql_root_password} |grep validate_password   &>> $LOGFILE
 if [ $? -eq 0 ];then
     echo -n "Uninstalling Validate Password Plugin : "
-    echo "uninstall plugin validate_password;" | mysql -uroot -pRoboShop@1    &>> $LOGFILE
-    echo "show databases;" | mysql -uroot -pRoboShop@1   &>> $LOGFILE
+    echo "uninstall plugin validate_password;" | mysql -uroot -p${mysql_root_password}    &>> $LOGFILE
+    echo "show databases;" | mysql -uroot -p${mysql_root_password}   &>> $LOGFILE
     status $?
 fi
 
@@ -50,5 +50,5 @@ wget $SCHEMA_URL   &>> $LOGFILE
 status $?
 
 echo -n "Injecting Schema : "
-mysql -u root -pRoboShop@1 </tmp/shipping.sql    &>> $LOGFILE
+mysql -u root -p${mysql_root_password} </tmp/shipping.sql    &>> $LOGFILE
 status $?
