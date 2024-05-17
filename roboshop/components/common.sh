@@ -55,7 +55,7 @@ CONFIG_SERVICE(){
     status $?
 
     echo -n "Configuring $COMPONENT Services : "
-    sed -i -e 's/DBHOST/mysql.roboshop.internal/' -e 's/CARTENDPOINT/cart.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' ${APPUSER_DIR}/systemd.service
+    sed -i -e 's/AMQPHOST/rabbitmq.roboshop.internal/' -e 's/USERHOST/user.roboshop.internal/' -e 's/DBHOST/mysql.roboshop.internal/' -e 's/CARTENDPOINT/cart.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' ${APPUSER_DIR}/systemd.service
     mv ${APPUSER_DIR}/systemd.service /etc/systemd/system/${COMPONENT}.service
     status $?
 
@@ -116,6 +116,28 @@ MAVEN(){
     CONFIG_SERVICE
 
     START_SERVICE
+
+}
+
+PYTHON(){
+
+    echo -n "Installing $COMPONENT : "
+    dnf install python36 gcc python3-devel -y    &>> $LOGFILE
+    status $?
+    
+    CREATE_USER
+    DOWNLOAD_AND_EXTRACT
+
+    echo -n "Installing $COMPONENT Dependencies : "
+    cd $APPUSER_DIR 
+    pip3.6 install -r requirements.txt     &>> $LOGFILE
+    status $?
+    
+
+    CONFIG_SERVICE
+
+    START_SERVICE
+
 
 }
 
