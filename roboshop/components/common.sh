@@ -104,6 +104,7 @@ MAVEN(){
     status $?
 
     CREATE_USER
+
     DOWNLOAD_AND_EXTRACT
 
     echo -n "Generating $COMPONENT Artifacts : "
@@ -121,15 +122,16 @@ MAVEN(){
 
 PYTHON(){
 
-    echo -n "Installing $COMPONENT : "
+    echo -n "Installing $COMPONENT  packages : "
     dnf install python36 gcc python3-devel -y    &>> $LOGFILE
     status $?
-    
+
     CREATE_USER
+
     DOWNLOAD_AND_EXTRACT
 
     echo -n "Installing $COMPONENT Dependencies : "
-    cd $APPUSER_DIR 
+    cd /home/$APPUSER/$COMPONENT 
     pip3.6 install -r requirements.txt     &>> $LOGFILE
     status $?
     

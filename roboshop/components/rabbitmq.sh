@@ -17,7 +17,7 @@ status $?
 echo -n "Enable and Start $COMPONENT Services : "
 systemctl enable rabbitmq-server  &>>LOGFILE
 systemctl start rabbitmq-server   &>>LOGFILE
-#systemctl status rabbitmq-server -l    &>>LOGFILE
+systemctl status rabbitmq-server -l    &>>LOGFILE
 
 rabbitmqctl list_users | grep $APPUSER    &>>LOGFILE
 if [ $? -ne 0 ];then
