@@ -9,7 +9,4 @@ if [ "$1" = "mysql" ];then
     fi
 fi
 
-
-
-
 bash components/$1.sh
