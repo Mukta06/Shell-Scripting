@@ -24,9 +24,9 @@ DOWNLOAD_AND_EXTRACT(){
     curl -s -L -o /tmp/$COMPONENT.zip  "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip"    &>> $LOGFILE
     status $?
 
-    #echo -n "Performing CleanUp : "
-    #rm -rf $APPUSER_DIR
-    #status $?
+    echo -n "Performing CleanUp : "
+    rm -rf $APPUSER_DIR
+    status $?
 
     echo -n "Extracting $COMPONENT Components : " 
     cd /home/$APPUSER
