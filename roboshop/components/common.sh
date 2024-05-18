@@ -130,14 +130,13 @@ PYTHON(){
 
     DOWNLOAD_AND_EXTRACT
 
+    CONFIG_SERVICE
+
     echo -n "Installing $COMPONENT Dependencies : "
     cd /home/$APPUSER/$COMPONENT 
     pip3.6 install -r requirements.txt     &>> $LOGFILE
     status $?
     
-
-    CONFIG_SERVICE
-
     START_SERVICE
 
 
