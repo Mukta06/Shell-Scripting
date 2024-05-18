@@ -50,7 +50,7 @@ CREATE_USER(){
 CONFIG_SERVICE(){
 
     echo -n "Configuring Permissions : "
-    mv /home/$APPUSER/$COMPONENT-main  $APPUSER_DIR     &>> $LOGFILE
+    mv /home/$APPUSER/$COMPONENT-main  /home/$APPUSER/$COMPONENT     &>> $LOGFILE
     chown -R ${APPUSER}:${APPUSER} $APPUSER_DIR
     status $?
 
