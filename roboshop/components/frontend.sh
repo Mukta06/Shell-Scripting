@@ -45,7 +45,7 @@ systemctl daemon-reload
 status $?
 
 echo -n "Updating the Proxy : "
-for i in catalogue user cart shipping ; do
+for i in catalogue user cart shipping payment ; do
     sed -i -e "/$i/s/localhost/$i.roboshop.internal/"  $CONFIG_DIR
    
 done
