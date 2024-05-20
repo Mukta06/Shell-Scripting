@@ -5,7 +5,6 @@ echo -e "\n\e[35m ********__________$COMPONENT Component Configuration Is Starte
 #All the repeted functions are placed here
 source components/common.sh
 COMPONENT="frontend"
-LOGFILE="/tmp/$COMPONENT.log"
 CONFIG_DIR="/etc/nginx/default.d/roboshop.conf"
 
 # Check whether the user have root access,, if not exit the script
