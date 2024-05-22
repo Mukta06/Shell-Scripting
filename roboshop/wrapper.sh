@@ -10,3 +10,6 @@ if [ "$1" = "mysql" ];then
 fi
 
 bash components/$1.sh
+
+# IAM -https://891377102653.signin.aws.amazon.com/console
+# Password - DevOps321
