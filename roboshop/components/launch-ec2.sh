@@ -11,8 +11,9 @@ aws ec2 run-instances \
 --instance-type t2.micro \
 --security-group-ids $SGID \
 --tag-specifications
+
 aws ec2 run-instances \
 --image-id $AMI_ID \
 --instance-type t3.micro \
 --security-group-ids $SGID \
---tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}-${ENV}}]" | jq .Instances[].PrivateIpAddress |sed -e 's/"//g')
+--tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}]"
