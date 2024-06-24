@@ -1,0 +1,124 @@
+{
+    "Groups": [],
+    "Instances": [
+        {
+            "AmiLaunchIndex": 0,
+            "ImageId": "ami-072983368f2a6eab5",
+            "InstanceId": "i-04d1ba808d05388eb",
+            "InstanceType": "t3.micro",
+            "LaunchTime": "2024-05-24T08:25:12+00:00",
+            "Monitoring": {
+                "State": "disabled"
+            },
+            "Placement": {
+                "AvailabilityZone": "us-east-1d",
+                "GroupName": "",
+                "Tenancy": "default"
+            },
+            "PrivateDnsName": "ip-172-31-36-68.ec2.internal",
+            "PrivateIpAddress": "172.31.36.68",
+            "ProductCodes": [],
+            "PublicDnsName": "",
+            "State": {
+                "Code": 0,
+                "Name": "pending"
+            },
+            "StateTransitionReason": "",
+            "SubnetId": "subnet-0889ad95d7d87d1d1",
+            "VpcId": "vpc-006d8a30439e4cd0f",
+            "Architecture": "x86_64",
+            "BlockDeviceMappings": [],
+            "ClientToken": "58fea485-3195-4179-9bbb-f9f56c82d2df",
+            "EbsOptimized": false,
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "NetworkInterfaces": [
+                {
+                    "Attachment": {
+                        "AttachTime": "2024-05-24T08:25:12+00:00",
+                        "AttachmentId": "eni-attach-0977b565dbb68e2d7",
+                        "DeleteOnTermination": true,
+                        "DeviceIndex": 0,
+                        "Status": "attaching",
+                        "NetworkCardIndex": 0
+                    },
+                    "Description": "",
+                    "Groups": [
+                        {
+                            "GroupName": "Allows-All-B57",
+                            "GroupId": "sg-083812cca5abcd144"
+                        }
+                    ],
+                    "Ipv6Addresses": [],
+                    "MacAddress": "0e:c6:64:99:bd:7f",
+                    "NetworkInterfaceId": "eni-04386c8e2d7459161",
+                    "OwnerId": "891377102653",
+                    "PrivateDnsName": "ip-172-31-36-68.ec2.internal",
+                    "PrivateIpAddress": "172.31.36.68",
+                    "PrivateIpAddresses": [
+                        {
+                            "Primary": true,
+                            "PrivateDnsName": "ip-172-31-36-68.ec2.internal",
+                            "PrivateIpAddress": "172.31.36.68"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Status": "in-use",
+                    "SubnetId": "subnet-0889ad95d7d87d1d1",
+                    "VpcId": "vpc-006d8a30439e4cd0f",
+                    "InterfaceType": "interface"
+                }
+            ],
+            "RootDeviceName": "/dev/sda1",
+            "RootDeviceType": "ebs",
+            "SecurityGroups": [
+                {
+                    "GroupName": "Allows-All-B57",
+                    "GroupId": "sg-083812cca5abcd144"
+                }
+            ],
+            "SourceDestCheck": true,
+            "StateReason": {
+                "Code": "pending",
+                "Message": "pending"
+            },
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "$COMPONENT"
+                }
+            ],
+            "VirtualizationType": "hvm",
+            "CpuOptions": {
+                "CoreCount": 1,
+                "ThreadsPerCore": 2
+            },
+            "CapacityReservationSpecification": {
+                "CapacityReservationPreference": "open"
+            },
+            "MetadataOptions": {
+                "State": "pending",
+                "HttpTokens": "optional",
+                "HttpPutResponseHopLimit": 1,
+                "HttpEndpoint": "enabled",
+                "HttpProtocolIpv6": "disabled",
+                "InstanceMetadataTags": "disabled"
+            },
+            "EnclaveOptions": {
+                "Enabled": false
+            },
+            "PrivateDnsNameOptions": {
+                "HostnameType": "ip-name",
+                "EnableResourceNameDnsARecord": false,
+                "EnableResourceNameDnsAAAARecord": false
+            },
+            "MaintenanceOptions": {
+                "AutoRecovery": "default"
+            },
+            "CurrentInstanceBootMode": "legacy-bios"
+        }
+    ],
+    "OwnerId": "891377102653",
+    "ReservationId": "r-0b81da3653d9ee157"
+}
+
