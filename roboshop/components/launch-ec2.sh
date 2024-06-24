@@ -8,7 +8,7 @@ SGID="sg-083812cca5abcd144"
 SERVER=$1
 
 
-if[ -z $1 ];then
+if [ -z $1 ] ; then
     echo -e "\e[31m COMPONENT NAME IS NEEDED : \e[0m"
     exit 1
 fi
