@@ -2,11 +2,12 @@
 
 # This Script Creates EC2 Instance and associated DNS Record as well
 COMPONENT=launchec2
+source components/common.sh
 #LOGFILE="/tmp/$COMPONENT.log"
 AMI_ID="ami-072983368f2a6eab5"
 SGID="sg-083812cca5abcd144"
 SERVER=$1
-source components/common.sh
+
 
 # If the arg is empty ,,, execution exits from if condition
 if [ -z $1 ] ; then
