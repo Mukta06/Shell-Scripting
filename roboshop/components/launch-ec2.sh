@@ -14,4 +14,4 @@ if [ -z $1 ] ; then
 fi
 PRIVATE_IP=$(aws ec2 run-instances --image-id $AMI_ID --instance-type t3.micro --security-group-ids $SGID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$SERVER}]" | jq .Instances[].PrivateIpAddress | sed -e 's/"//g')
 
-echo "$1 Server is Created and the  IP ADDRESS is : $PRIVATE_IP "
+echo -e "\e[33m $1 Server is Created and the  IP ADDRESS is : \e[0m $PRIVATE_IP "
