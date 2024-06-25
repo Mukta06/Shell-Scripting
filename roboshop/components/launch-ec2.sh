@@ -17,5 +17,5 @@ PRIVATE_IP=$(aws ec2 run-instances --image-id $AMI_ID --instance-type t3.micro -
 
 echo -e "\e[33m $1 Server is Created and the  IP ADDRESS is : \e[0m $PRIVATE_IP "
 
-echo -e -n "\e[32m Creating DNS Record : "
+echo  -n "Creating DNS Record : "
 status $?
