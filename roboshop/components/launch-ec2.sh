@@ -20,7 +20,7 @@ PRIVATE_IP=$(aws ec2 run-instances --image-id $AMI_ID --instance-type t3.micro -
 echo -e "\e[33m $1 Server is Created and the  IP ADDRESS is : \e[0m $PRIVATE_IP "
 
 echo "Creating R53 json file with component name and IP address "
-sed -e "s/COMPONENT/${SERVER}/g" -e "s/IPADDRESS/${PRIVATE_IP}/g" rout53.json > tmp/dns.json
+sed -e "s/COMPONENT/${SERVER}/g" -e "s/IPADDRESS/${PRIVATE_IP}/g" rout53.json > /tmp/dns.json
 
 
 echo  -n "Creating DNS Record for $SERVER : "
