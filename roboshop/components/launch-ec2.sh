@@ -24,4 +24,4 @@ sed -e "s/COMPONENT/${SERVER}/g" -e "s/IPADDRESS/${PRIVATE_IP}/g" rout53.json > 
 
 
 echo  -n "Creating DNS Record for $SERVER : "
-aws route53 change-resource-record-sets --hosted-zone-id $HOSTEDZONE_ID --change-batch file://tmp/dns.json
+aws route53 change-resource-record-sets --hosted-zone-id $HOSTEDZONE_ID --change-batch file:///tmp/dns.json
