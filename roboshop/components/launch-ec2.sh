@@ -11,7 +11,7 @@ source components/common.sh
 # If the arg is empty ,,, execution exits from if condition
 if [ -z $1 ] ; then
     echo -e "\e[31m COMPONENT NAME IS NEEDED : \e[0m"
-    exit 1
+    #exit 1
 fi
 PRIVATE_IP=$(aws ec2 run-instances --image-id $AMI_ID --instance-type t3.micro --security-group-ids $SGID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$SERVER}]" | jq .Instances[].PrivateIpAddress | sed -e 's/"//g')
 
