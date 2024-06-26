@@ -25,7 +25,7 @@ create_ec2() {
     echo -e "$COLOR $1 Server is Created and the  IP ADDRESS is : $NOCOLOR $PRIVATE_IP"
 
     echo -e "$COLOR ______Creating R53 json file with component name and IP address ______$NOCOLOR "
-    sed -e "s/COMPONENT/${SERVER}/g" -e "s/IPADDRESS/${PRIVATE_IP}/g" rout53.json > /tmp/dns.json
+    sed -e "s/COMPONENT/${SERVER}/g" -e "s/IPADDRESS/${PRIVATE_IP}/g" rout53.json >> /tmp/dns.json
 
 
     echo  -e "$COLOR ______Creating DNS Record for $SERVER : ______$NOCOLOR"
