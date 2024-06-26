@@ -7,21 +7,37 @@ COMPONENT=launchec2
 AMI_ID="ami-072983368f2a6eab5"
 SGID="sg-083812cca5abcd144"
 SERVER=$1
+ENV=$2
 HOSTEDZONE_ID=Z05591432KMS3R83DW3F0
+COLOR="\e[34m"
+NOCOLOR="\e[0m"
 
 
 # If the arg is empty ,,, execution exits from if condition
-if [ -z $1 ] ; then
-    echo -e "\e[31m COMPONENT NAME IS NEEDED : \e[0m"
+if [ -z $1 ] || [ -z $2 ]; then
+    echo -e "\e[31m COMPONENT NAME AND ENVIRONMENT ARE NEEDED : \e[0m"
     exit 1
 fi
-PRIVATE_IP=$(aws ec2 run-instances --image-id $AMI_ID --instance-type t3.micro --security-group-ids $SGID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$SERVER}]" | jq .Instances[].PrivateIpAddress | sed -e 's/"//g')
 
-echo -e "\e[33m $1 Server is Created and the  IP ADDRESS is : \e[0m $PRIVATE_IP "
+create_ec2() {
+    PRIVATE_IP=$(aws ec2 run-instances --image-id $AMI_ID --instance-type t3.micro --security-group-ids $SGID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$SERVER}]" | jq .Instances[].PrivateIpAddress | sed -e 's/"//g')
 
-echo "Creating R53 json file with component name and IP address "
-sed -e "s/COMPONENT/${SERVER}/g" -e "s/IPADDRESS/${PRIVATE_IP}/g" rout53.json > /tmp/dns.json
+    echo -e "______$COLOR $1 Server is Created and the  IP ADDRESS is : $NOCOLOR $PRIVATE_IP ______"
+
+    echo "______$COLOR Creating R53 json file with component name and IP address ______$NOCOLOR "
+    sed -e "s/COMPONENT/${SERVER}/g" -e "s/IPADDRESS/${PRIVATE_IP}/g" rout53.json > /tmp/dns.json
 
 
-echo  -n "Creating DNS Record for $SERVER : "
-aws route53 change-resource-record-sets --hosted-zone-id $HOSTEDZONE_ID --change-batch file:///tmp/dns.json
+    echo  -e "______$COLOR Creating DNS Record for $SERVER : ______$NOCOLOR"
+    aws route53 change-resource-record-sets --hosted-zone-id $HOSTEDZONE_ID --change-batch file:///tmp/dns.json 
+
+}
+
+if [$1 == "all"] ; then
+    for comp in frontend mongodb catalogue user redis cart mysql shipping rabbitmq payment ; do
+    COMPONENT=$comp
+    create_ec2
+    done
+else
+    create_ec2
+fi
