@@ -22,18 +22,18 @@ fi
 create_ec2() {
     PRIVATE_IP=$(aws ec2 run-instances --image-id $AMI_ID --instance-type t3.micro --security-group-ids $SGID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$SERVER}]" | jq .Instances[].PrivateIpAddress | sed -e 's/"//g')
 
-    echo -e "______$COLOR $1 Server is Created and the  IP ADDRESS is : $NOCOLOR $PRIVATE_IP ______"
+    echo -e "$COLOR $1 Server is Created and the  IP ADDRESS is : $NOCOLOR $PRIVATE_IP"
 
-    echo "______$COLOR Creating R53 json file with component name and IP address ______$NOCOLOR "
+    echo "$COLOR ______Creating R53 json file with component name and IP address ______$NOCOLOR "
     sed -e "s/COMPONENT/${SERVER}/g" -e "s/IPADDRESS/${PRIVATE_IP}/g" rout53.json > /tmp/dns.json
 
 
-    echo  -e "______$COLOR Creating DNS Record for $SERVER : ______$NOCOLOR"
+    echo  -e "$COLOR ______Creating DNS Record for $SERVER : ______$NOCOLOR"
     aws route53 change-resource-record-sets --hosted-zone-id $HOSTEDZONE_ID --change-batch file:///tmp/dns.json 
 
 }
 
-if [$1 == "all"] ; then
+if [ "$1" == "all"] ; then
     for comp in frontend mongodb catalogue user redis cart mysql shipping rabbitmq payment ; do
     COMPONENT=$comp
     create_ec2
