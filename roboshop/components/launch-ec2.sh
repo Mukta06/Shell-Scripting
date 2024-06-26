@@ -28,7 +28,7 @@ create_ec2() {
     sed -e "s/COMPONENT/${SERVER}-${ENV}/g" -e "s/IPADDRESS/${PRIVATE_IP}/g" rout53.json > /tmp/dns.json
 
 
-    echo  -e "$COLOR ______Creating DNS Record for $SERVER--${ENV} : ______$NOCOLOR"
+    echo  -e "$COLOR ______Creating DNS Record for $SERVER-${ENV} : ______$NOCOLOR"
     aws route53 change-resource-record-sets --hosted-zone-id $HOSTEDZONE_ID --change-batch file:///tmp/dns.json 
 
 }
