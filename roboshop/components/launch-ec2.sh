@@ -33,7 +33,7 @@ create_ec2() {
 
 }
 
-if [ "$1" == "all"]; then
+if [ "$1" == "all" ]; then
     for comp in frontend mongodb catalogue user redis cart mysql shipping rabbitmq payment; do
     COMPONENT=$comp
     create_ec2
