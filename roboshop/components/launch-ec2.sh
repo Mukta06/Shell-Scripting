@@ -20,23 +20,23 @@ if [ -z $1 ] || [ -z $2 ]; then
 fi
 
 create_ec2() {
-    PRIVATE_IP=$(aws ec2 run-instances --image-id $AMI_ID --instance-type t3.micro --security-group-ids $SGID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$SERVER}]" | jq .Instances[].PrivateIpAddress | sed -e 's/"//g')
+    PRIVATE_IP=$(aws ec2 run-instances --image-id $AMI_ID --instance-type t3.micro --security-group-ids $SGID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${SERVER}-${ENV}}]" | jq .Instances[].PrivateIpAddress | sed -e 's/"//g')
 
     echo -e "$COLOR $1 Server is Created and the  IP ADDRESS is : $NOCOLOR $PRIVATE_IP"
 
     echo -e "$COLOR ______Creating R53 json file with component name and IP address ______$NOCOLOR "
-    sed -e "s/COMPONENT/${SERVER}/g" -e "s/IPADDRESS/${PRIVATE_IP}/g" rout53.json >> /tmp/dns.json
+    sed -e "s/COMPONENT/${SERVER}-${ENV}/g" -e "s/IPADDRESS/${PRIVATE_IP}/g" rout53.json > /tmp/dns.json
 
 
-    echo  -e "$COLOR ______Creating DNS Record for $SERVER : ______$NOCOLOR"
+    echo  -e "$COLOR ______Creating DNS Record for $SERVER--${ENV} : ______$NOCOLOR"
     aws route53 change-resource-record-sets --hosted-zone-id $HOSTEDZONE_ID --change-batch file:///tmp/dns.json 
 
 }
 
 if [ "$1" == "all" ]; then
     for comp in frontend mongodb catalogue user redis cart mysql shipping rabbitmq payment; do
-    SERVER=$comp
-    create_ec2
+        SERVER=$comp
+        create_ec2
     done
 else
     create_ec2
