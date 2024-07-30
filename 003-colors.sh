@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Syntax to use color 
-
+# sachin added comment
 # echo -e "\e[COLORCODEm I am Priniting Color \e[0m"  ----> Foreground color syntax---> text color will be changed
 
 echo -e "\e[32mI am printing GREEN COLOR \e[0m"
