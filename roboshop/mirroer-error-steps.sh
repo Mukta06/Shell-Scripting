@@ -17,3 +17,4 @@ sudo sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org
 echo -n "Update is Completed : "
 sudo yum update -y    &> $PATH
 status $?
+#added comment
